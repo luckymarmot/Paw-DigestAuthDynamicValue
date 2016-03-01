@@ -11,6 +11,9 @@ class DigestAuthDynamicValue {
   ]
 
   evaluate(context) {
+    if (context.runtimeInfo.task != 'requestSend') {
+      return '** digest is only generated during request send **'
+    }
     const dauth = new HTTPDigestAuth(this.username, this.password)
     dauth.getChallenge(context)
     return dauth.build_digest_header()

@@ -134,8 +134,6 @@ export default class HTTPDigestAuth {
 
     let A1 = `${this.username}:${realm}:${this.password}`
     let A2 = `${method}:${path}`
-    console.log(A1)
-    console.log(A2)
     let HA1 = hash_utf8(A1)
     let HA2 = hash_utf8(A2)
 
@@ -184,8 +182,3 @@ export default class HTTPDigestAuth {
     return `Digest ${base}`
   }
 }
-
-function evaluate(context){
-
-}
-
