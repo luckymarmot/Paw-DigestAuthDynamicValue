@@ -7,7 +7,8 @@ deploy:
   provider: releases
   api_key:
     secure: IgborNz3EYx9WPuijMCwvGYdZZZeiWUH8bMQdCoVDMIAN07y79Vlc1zp67C0GXUWEMIwYgS8iSWv3XLOgdSutTT2XSZ0BBjD5GDhRT20au3sY8WnAhoV0zBb9EE8TBZEZwFDJ3YA6d40HIkf0gyCuuXCHVJC0LL5sOsvwFd54f/uVpjAf14v1B3Grj+kkKbCV39kykRWWwSfUGvX0agiBp9QehD3vmQzLe24iRc8O6hpGDh9pBuut+XkVgLAN2cQqxkYdnwr5uv/ztTjirJd0yJtjdlZygO3P/5UlfTSK5LKI6SHOiuYXfu2qlMIsvqKLbNV+p8yQUkrN4ubaYUj5iwrDWGPNBIXDH94911TrCGmxAgkn1kR6TnzLaUH21F3gnVr16azFMsB7tv9o5Dw7oxOczIbu0qT8fBTPLQyz7iU/f5SPoB0lXxibzehIMfsr5xcNR/KMd6C4gVeDUCoU03fSEYTVVTTQEam0356AUJ+siXeKxDu9jJkH2SHj44mw4D0W+MXy+lHWVRfiXva/brOTZKe9x72u4y6mg3hDt28VpDejvlp1Po01pYYKg5iHf3HQzmmTfa6ehgcmPR5Qd1/pHxB5ZMx5TpTv2cjAYYpUQsGiDVyVaJzU8CbzuQZ9O4nSbnSzeiEofS6E/E+7RDsiDZX1P1K41jEIj2RG7E=
-  file: ''
+  file: build/DigestAuthDynamicValue.zip
+  skip_cleanup: true
   on:
     tags: true
     all_branches: true
