@@ -28,11 +28,11 @@ export default class HTTPDigestAuth {
 
   getChallenge(context) {
     var RE = {
-      realm: /realm="?([^"]+)"?/,
-      nonce: /nonce="?([^"]+)"?/,
-      qop: /qop="?([^"]+)"?/,
-      algorithm: /algorithm="?([^"]+)"?/,
-      opaque: /opaque="?([^"]+)"?/,
+      realm: /realm="?([^"^,]+)"?/,
+      nonce: /nonce="?([^"^,]+)"?/,
+      qop: /qop="?([^"^,]+)"?/,
+      algorithm: /algorithm="?([^"^,]+)"?/,
+      opaque: /opaque="?([^"^,]+)"?/,
     }
 
     //noinspection JSUnresolvedFunction
@@ -41,6 +41,11 @@ export default class HTTPDigestAuth {
     const request = new NetworkHTTPRequest()
     request.requestUrl = currentRequest.url
     request.method = currentRequest.method
+    let currentUserAgent = currentRequest.getHeaderByName('User-Agent')
+    if (currentUserAgent == null) {
+      currentUserAgent = "Paw/" + bundle.appVersion + " (Macintosh; OS X/" + bundle.osVersion + ") GCDHTTPRequest"
+    }
+    request.setRequestHeader('User-Agent', currentUserAgent)
     request.send()
     const WWWAuthenticate = request.getResponseHeader('WWW-Authenticate')
     Immutable.Map(RE).forEach( (re, key) => {
@@ -143,8 +148,8 @@ export default class HTTPDigestAuth {
     else {
       this.nonce_count = 1
     }
-    let ncvalue = this.nonce_count
-    let cnonce = this.getNonce()
+    let ncvalue = '00000001'
+    let cnonce =  this.getNonce()
     if (_algorithm === 'MD5-SESS') {
       HA1 = hash_utf8(`${HA1}:${nonce}:${cnonce}`)
     }
@@ -170,13 +175,13 @@ export default class HTTPDigestAuth {
       base += `, opaque="${opaque}"`
     }
     if (algorithm) {
-      base += `, algorithm="${algorithm}"`
+      base += `, algorithm=${algorithm}`
     }
     if (entdig){
       base += `, digest="${entdig}"`
     }
     if (qop){
-      base += `, qop="auth", nc=${ncvalue}, cnonce="${cnonce}"`
+      base += `, qop=auth, nc=${ncvalue}, cnonce="${cnonce}"`
     }
 
     return `Digest ${base}`
