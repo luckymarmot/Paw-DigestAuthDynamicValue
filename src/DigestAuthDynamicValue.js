@@ -4,7 +4,7 @@ import HTTPDigestAuth from './HTTPDigestAuth'
 class DigestAuthDynamicValue {
   static identifier = 'com.luckymarmot.PawExtensions.DigestAuthDynamicValue'
   static title = 'Digest Auth'
-  static help = 'https://luckymarmot.com/paw/doc'
+  static help = 'https://luckymarmot.com/paw/doc/auth/digest-auth'
   static inputs = [
     DynamicValueInput('username', 'Username', "String"),
     DynamicValueInput('password', 'Password', "SecureValue")
