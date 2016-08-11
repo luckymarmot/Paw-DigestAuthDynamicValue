@@ -6,7 +6,7 @@ const name = 'DigestAuthDynamicValue'
 const production = process.env.NODE_ENV === 'production'
 
 const config = {
-  target: 'node-webkit',
+  target: 'web',
   entry: [
     'immutable',
     './src/DigestAuthDynamicValue.js'
