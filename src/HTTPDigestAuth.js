@@ -40,7 +40,7 @@ export default class HTTPDigestAuth {
     //noinspection JSUnresolvedFunction
     const request = new NetworkHTTPRequest()
     request.requestUrl = currentRequest.url
-    request.method = currentRequest.method
+    request.requestMethod = currentRequest.method
     let currentUserAgent = currentRequest.getHeaderByName('User-Agent')
     if (currentUserAgent == null) {
       currentUserAgent = "Paw/" + bundle.appVersion + " (Macintosh; OS X/" + bundle.osVersion + ") GCDHTTPRequest"
