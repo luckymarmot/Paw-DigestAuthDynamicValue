@@ -3,9 +3,10 @@ import Immutable from 'immutable'
 export default class HTTPDigestAuth {
 
   // Attaches HTTP Digest Authentication to the given Request object.
-  constructor(username, password) {
+  constructor(username, password, include_body=false) {
     this.username = username
     this.password = password
+    this.include_body = include_body
     //# Keep state in per-thread local storage
     this._thread_local = {}
     this.init_state()
@@ -40,12 +41,24 @@ export default class HTTPDigestAuth {
     //noinspection JSUnresolvedFunction
     const request = new NetworkHTTPRequest()
     request.requestUrl = currentRequest.url
-    request.method = currentRequest.method
+    request.requestMethod = currentRequest.method
     let currentUserAgent = currentRequest.getHeaderByName('User-Agent')
     if (currentUserAgent == null) {
       currentUserAgent = "Paw/" + bundle.appVersion + " (Macintosh; OS X/" + bundle.osVersion + ") GCDHTTPRequest"
     }
     request.setRequestHeader('User-Agent', currentUserAgent)
+    let headers = Immutable.fromJS(currentRequest.headers)
+    headers.forEach(
+        (header_value, key) => {
+          if (key.toLowerCase() !== 'authorization') {
+              // do not add the auth header
+              request.setRequestHeader(key, header_value)
+          }
+        }
+    )
+    if (this.include_body) {
+      request.requestBody = currentRequest.body
+    }
     request.send()
     const WWWAuthenticate = request.getResponseHeader('WWW-Authenticate')
     Immutable.Map(RE).forEach( (re, key) => {
