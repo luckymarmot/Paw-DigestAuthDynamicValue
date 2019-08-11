@@ -114,7 +114,7 @@ export default class HTTPDigestAuth {
     const method = this.method
     const url = this.url
 
-    const realm = this.chal['realm']
+    const realm = this.chal['realm'] ? this.chal['realm'] : ''
     const nonce = this.chal['nonce']
     const qop = this.chal['qop']
     const algorithm = this.chal['algorithm']
