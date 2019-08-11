@@ -1,6 +1,6 @@
 {
   "name": "Paw-DigestAuthDynamicValue",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "src/DigestAuthDynamicValue.js",
   "license": "MIT",
   "homepage": "https://github.com/luckymarmot/Paw-DigestAuthDynamicValue",
