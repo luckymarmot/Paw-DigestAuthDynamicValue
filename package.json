@@ -26,7 +26,7 @@
     "chai": "3.4.1",
     "mocha": "2.3.4",
     "path": "0.12.7",
-    "webpack": "1.12.9"
+    "webpack": "5.94.0"
   },
   "scripts": {
     "build": "rm -rf dist/ && BUILD_ENV=build ./node_modules/.bin/webpack --bail --display-error-details",
